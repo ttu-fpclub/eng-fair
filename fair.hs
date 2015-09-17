@@ -3,8 +3,8 @@ import Control.Monad
 quicksort :: Ord a => [a] -> [a]
 quicksort [] = []
 quicksort (x:xs) = less ++ [x] ++ more
-    where less = filter (< x) xs
-          more = filter (>= x) xs
+    where less = quicksort $ filter (< x) xs
+          more = quicksort $ filter (>= x) xs
 
 isPrime :: Integral a => a -> Bool
 isPrime n = all ((/= 0) . (n `rem`)) [2 .. n - 1]
